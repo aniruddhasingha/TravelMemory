@@ -1,0 +1,19 @@
+{
+  "app": {
+    "name": "TravelMemory",
+    "env": "production"
+  },
+  "backend": {
+    "port": 3001,
+    "url": "http://<production-backend-host>:3001",
+    "corsOrigin": "http://<production-frontend-host>"
+  },
+  "frontend": {
+    "port": 80,
+    "url": "http://<production-frontend-host>",
+    "backendUrl": "http://<production-backend-host>:3001"
+  },
+  "database": {
+    "name": "devops-project-1"
+  }
+}
