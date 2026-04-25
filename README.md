@@ -105,7 +105,7 @@ npm start               # Starts on http://localhost:3000
 └────────────────────────────────────────────┼────────────────────────────────┘
                                              │
 ┌────────────────────────────────────────────┼────────────────────────────────┐
-│  AWS VPC (vpc-b96b9cd2 — 172.31.0.0/16)   │       Region: ap-south-1      │
+│  AWS VPC (Default VPC)                     │       Region: ap-south-1      │
 │                                            │                                │
 │  ┌─────────────────────────────────────────┼──────────────────────────┐     │
 │  │              travelmemory-alb-sg        │                          │     │
@@ -125,7 +125,7 @@ npm start               # Starts on http://localhost:3000
 │  │                         │                  │                       │     │
 │  │    ┌────────────────────┴───┐  ┌───────────┴────────────────┐     │     │
 │  │    │  AZ: ap-south-1b      │  │  AZ: ap-south-1a           │     │     │
-│  │    │  subnet-ab4904e7      │  │  subnet-79c0dc11           │     │     │
+│  │    │                       │  │                             │     │     │
 │  │    │                       │  │                             │     │     │
 │  │    │  ┌─────────────────┐  │  │  ┌─────────────────┐       │     │     │
 │  │    │  │ TravelMemory-1  │  │  │  │ TravelMemory-2  │       │     │     │
@@ -155,9 +155,8 @@ npm start               # Starts on http://localhost:3000
                               ┌───────────────────────────┐
                               │      MONGODB ATLAS         │
                               │      (External)            │
-                              │      IP Access: 0.0.0.0/0  │
-                              │      Cluster: devops-       │
-                              │        project-1            │
+                              │      Cluster: MongoDB Atlas  │
+                              │                              │
                               └───────────────────────────┘
 ```
 

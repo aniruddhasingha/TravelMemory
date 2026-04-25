@@ -56,8 +56,8 @@ I launched the first instance in the **ap-south-1** (Mumbai) region:
 | AMI | Ubuntu Server 24.04 LTS (free tier eligible) |
 | Instance type | `t2.micro` |
 | Key pair | Created a new `.pem` key |
-| VPC | Default VPC (`vpc-b96b9cd2` — `172.31.0.0/16`) |
-| Subnet | `subnet-ab4904e7` (ap-south-1b) |
+| VPC | Default VPC |
+| Subnet | Any subnet in ap-south-1b |
 | Auto-assign public IP | Enabled |
 | Storage | 8 GB gp3 (default) |
 
@@ -113,7 +113,7 @@ Visited `http://<PUBLIC_IP>` to confirm the default nginx welcome page was showi
 
 ```bash
 cd /home/ubuntu
-git clone -b fix/experience-details-image-styling https://github.com/aniruddhaadak/TravelMemory.git
+git clone -b main https://github.com/aniruddhaadak/TravelMemory.git
 cd TravelMemory/backend
 npm install
 ```
@@ -292,7 +292,7 @@ Launched the second instance from the AMI:
 | Name | `TravelMemory-2` |
 | Instance type | `t2.micro` |
 | Key pair | Same key |
-| Subnet | `subnet-79c0dc11` (ap-south-1a) — different AZ from instance 1 |
+| Subnet | Any subnet in ap-south-1a — different AZ from instance 1 |
 | Security group | Existing `travelmemory-sg` |
 | Auto-assign public IP | Enabled |
 
@@ -365,7 +365,7 @@ This prevents direct access to the instances — all web traffic must go through
 
 ### Verifying
 
-Visited the ALB DNS name (`travelmemory-alb-260773301.ap-south-1.elb.amazonaws.com`) in the browser and confirmed the app was loading. The ALB distributes requests across both instances.
+Visited the ALB DNS name in the browser and confirmed the app was loading. The ALB distributes requests across both instances.
 
 ---
 
@@ -383,7 +383,7 @@ In the Cloudflare dashboard for `jidolabs.com`:
 |---|---|
 | Type | CNAME |
 | Name | `travelmemory` |
-| Target | `travelmemory-alb-260773301.ap-south-1.elb.amazonaws.com` |
+| Target | Your ALB DNS name (e.g., `travelmemory-alb-xxxxxx.ap-south-1.elb.amazonaws.com`) |
 | Proxy status | Proxied (orange cloud) |
 
 > **Note:** Don't include `http://` in the CNAME target — just the hostname.
@@ -468,7 +468,7 @@ When I push code changes, here's how to update both instances:
 
 ```bash
 cd /home/ubuntu/TravelMemory
-git pull origin fix/experience-details-image-styling
+git pull origin main
 
 # Re-apply env files (env/ is gitignored, so pull won't touch them)
 cp env/.env.production backend/.env
